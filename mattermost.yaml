@@ -15,13 +15,17 @@ objects:
     source:
       git:
         uri: https://github.com/goern/mattermost-openshift
+        ref: master
+        httpProxy: 'http://10.144.76.10:8080'
+        httpsProxy: 'http://10.144.76.10:8080'        
       type: Git
+      secrets: null
     strategy:
-      dockerStrategy:
+      sourceStrategy:
         from:
-          kind: ImageStreamTag
           name: rhel:latest
-      type: Docker
+          kind: ImageStreamTag
+      type: Source
     triggers:
     - type: ConfigChange
     - imageChange: {}
